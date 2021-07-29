@@ -54,4 +54,11 @@ Vou deixar aqui notas com mais detalhes de cada commit do projeto.
     </ul>
     <br>
 </div>
+<div style="background-color: #E8E8E8; border-radius: 3px;">
+   <p><strong>INCLUINDO O MÉTODO HTTP GET NAS PÁGINAS</strong></p>
+    <ul>
+        <li><strong>PARTE 3:</strong> Criado o model Request e o arquivo de service da aplicação. Incluido método getAll que retorna todas as requests e o metodo getAllByAgentId que retorna todas as requests criadas por um determinado agente</li>
+    </ul>
+    <br>
+</div>
 
