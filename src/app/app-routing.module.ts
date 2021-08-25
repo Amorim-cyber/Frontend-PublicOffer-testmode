@@ -1,44 +1,32 @@
-
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BackViewComponent } from './back-view/back-view.component';
-import { FrontViewComponent } from './front-view/front-view.component';
+import { ListOfferComponent } from './list-offer/list-offer.component';
+import { RegisterOfferComponent } from './register-offer/register-offer.component';
 
 const routes: Routes = [
-
   {
     path: '',
-    redirectTo: 'Back',
+    redirectTo: 'main',
     pathMatch: 'full'
   },
-
   {
-    path: 'Back',
-    children:[
+    path: 'main',
+    children: [
       {
         path: '',
-        component: BackViewComponent
+        component: ListOfferComponent
       },
-      {
-        path: '11111',
-        children:[
-          {
-            path: '',
-            component: FrontViewComponent
-          }
-        ]
-      },
-      {
-        path: '22222',
-        children:[
-          {
-            path: '',
-            component: FrontViewComponent
-          }
-        ]
-      },
-    ]
-  }
+    {
+      path: 'register',
+      children: [
+        {
+          path: '',
+          component: RegisterOfferComponent
+        },
+      ]
+    },
+  ]
+},
 ];
 
 @NgModule({

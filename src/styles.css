@@ -1,7 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #E8E8E8;}
+:root{
+  --background-color: url(assets/img/Hyrule_Castle2.jpg);
+  --primary-color: #ED2939;
+  --text-color: #5C6369;
+}
+
+*{
+  box-sizing: border-box;
+}
+
+html { height: 100%; width: 100%; margin:0;}
+body {height: 100%; width: 100%; margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background: var(--background-color);}
 
 .main-div {
   display: flex;
@@ -9,12 +19,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-
   align-items: center;
 }
 
-.padding-10{
-  padding: 10px;
+.column{
+  display: flex;
+  flex-direction: column;
 }
 
 .margin-top-50{
-  margin-top: 50px;
+  margin-top: 3.125rem;
 }
 
 .center {
@@ -22,10 +33,21 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-
 }
 
 .width {
-  width: 50%;
+  width: 70%;
 }
 
 .full-width {
   width: 100%;
 }
 
+@media screen and (max-width:34.4375rem){
+  .width {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width:26.3125rem){
+  .width {
+    width: 100%;
+  }
+}

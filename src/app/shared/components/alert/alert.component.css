@@ -1,0 +1,13 @@
+.space_between{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@media screen and (min-width: 420px) {
+
+  #break{
+    display: none;
+  }
+
+}

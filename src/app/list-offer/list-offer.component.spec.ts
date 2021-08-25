@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BackViewComponent } from './back-view.component';
+import { ListOfferComponent } from './list-offer.component';
 
-describe('BackViewComponent', () => {
-  let component: BackViewComponent;
-  let fixture: ComponentFixture<BackViewComponent>;
+describe('ListOfferComponent', () => {
+  let component: ListOfferComponent;
+  let fixture: ComponentFixture<ListOfferComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BackViewComponent ]
+      declarations: [ ListOfferComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BackViewComponent);
+    fixture = TestBed.createComponent(ListOfferComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

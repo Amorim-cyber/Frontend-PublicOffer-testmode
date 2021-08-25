@@ -1,0 +1,75 @@
+<h1 mat-dialog-title class="space_between">
+  {{alert.title}}
+  <button *ngIf="alert.hasForm" (click)="delete()"
+  mat-mini-fab color="primary" color="warn">
+    <mat-icon>delete</mat-icon>
+  </button>
+</h1>
+<div mat-dialog-content>
+
+  <div *ngIf="alert.hasForm" >
+    <mat-label><b>Código</b></mat-label>
+    <mat-label id="code">
+      {{alert.offer!.clientCode}}
+    </mat-label>
+    <br><br>
+    <mat-label><b>Primeiro nome:</b></mat-label>
+    <mat-label id="name">
+      {{alert.offer!.clientName | firstName | titlecase}}
+    </mat-label>
+    <br><br>
+    <mat-label><b>Vinculado?</b></mat-label>
+    <mat-label id="bound">
+      {{alert.offer!.bound | toBound}}
+    </mat-label>
+    <br><br>
+    <mat-label><b>Nome da oferta:</b></mat-label>
+    <mat-label id="offerName">
+      {{alert.offer!.offerName}}
+    </mat-label>
+    <br><br>
+    <mat-label><b>E-mail cliente:</b></mat-label>
+    <mat-label id="clientEmail">
+      {{alert.offer!.clientEmail}}
+    </mat-label>
+    <br><br>
+    <mat-label><b>E-mail assessor:</b></mat-label>
+    <mat-label id="agentEmail">
+      {{alert.offer!.agentEmail}}
+    </mat-label>
+    <br><br>
+    <mat-label><b>Preço:</b></mat-label>
+    <mat-label id="price">
+      {{alert.offer!.price | currency:'BRL' | toMarket}}
+    </mat-label>
+    <br><br>
+    <mat-label><b>Financeiro:</b></mat-label>
+    <mat-label id="amount">
+      {{alert.offer!.amount | currency:'BRL'}}
+    </mat-label>
+    <br><br>
+    <mat-label><b>Atualize o status:</b></mat-label>
+    <br id="break">
+    <mat-radio-group [(ngModel)]="selectedStatus">
+      <mat-radio-button *ngFor="let s of status" style="margin-left: 15px;" [value]="s">
+        {{s}}
+      </mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <p *ngIf="!alert.hasForm">{{alert.description}}</p>
+</div>
+<div mat-dialog-actions>
+  <button id="update" mat-raised-button
+          (click) = update(selectedStatus)
+          [color]="alert.colorBtnSucess"
+          cdkFocusInitial
+          [mat-dialog-close]="true">
+    {{alert.btnSucess}}
+  </button>
+  <button id="cancel" mat-raised-button
+          [color]="alert.colorBtnCancel"
+          [mat-dialog-close]="false"
+          *ngIf="alert.hasBtnClose" >
+    {{alert.btnCancel}}
+  </button>
+</div>

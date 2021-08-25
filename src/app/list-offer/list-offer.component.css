@@ -1,0 +1,40 @@
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.greyColor{
+  background-color: #e5e4e2;
+}
+
+.mat-cell, .mat-footer-cell {
+  font-size:12px;
+}
+
+@media screen and (max-width: 760px) {
+  .mat-column-bound,.mat-column-price,.mat-column-amount{
+    display:none;
+  }
+}
+
+@media screen and (max-width: 421px) {
+  mat-card{
+
+    margin:0;
+
+  }
+
+  .mat-cell, .mat-footer-cell {
+    font-size: 10px;
+  }
+
+  th.mat-header-cell:last-of-type, td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type {
+    padding-right: 0px;
+  }
+
+  th.mat-header-cell:first-of-type, td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type {
+    padding-left: 0px;
+  }
+}
+
+

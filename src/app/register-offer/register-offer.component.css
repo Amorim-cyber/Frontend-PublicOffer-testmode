@@ -1,0 +1,14 @@
+.color-btn{
+  background-color: var(--primary-color);
+  color:white;
+}
+
+@media screen and (max-width:641px){
+  mat-card-actions {
+    display: flex;
+    flex-direction: column;
+  }
+  mat-card-actions button{
+    margin-bottom: 15px;
+  }
+}

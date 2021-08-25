@@ -1,9 +1,12 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "f23bd636-95b6-4413-a6eb-e95221d4f37a"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ofertaBack-front": {
+    "publicOffer": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -17,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ofertaBack-front",
+            "outputPath": "dist/publicOffer",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -69,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ofertaBack-front:build:production"
+              "browserTarget": "publicOffer:build:production"
             },
             "development": {
-              "browserTarget": "ofertaBack-front:build:development"
+              "browserTarget": "publicOffer:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -80,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ofertaBack-front:build"
+            "browserTarget": "publicOffer:build"
           }
         },
         "test": {
@@ -100,9 +103,13 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {}
         }
       }
     }
   },
-  "defaultProject": "ofertaBack-front"
+  "defaultProject": "publicOffer"
 }
