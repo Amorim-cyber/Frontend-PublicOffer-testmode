@@ -11,7 +11,6 @@ import { ListOfferComponent } from './list-offer/list-offer.component';
 import { RegisterOfferComponent } from './register-offer/register-offer.component';
 import { AlertComponent } from './shared/components/alert/alert.component';
 import { ToMarketPipe } from './shared/pipes/to-market.pipe';
-import { ToBoundPipe } from './shared/pipes/to-bound.pipe';
 import { LOCALE_ID } from '@angular/core';
 import localePt from '@angular/common/locales/pt';
 import {registerLocaleData} from '@angular/common';
@@ -29,7 +28,6 @@ registerLocaleData(localePt)
     RegisterOfferComponent,
     AlertComponent,
     ToMarketPipe,
-    ToBoundPipe,
     FirstNamePipe
   ],
   imports: [

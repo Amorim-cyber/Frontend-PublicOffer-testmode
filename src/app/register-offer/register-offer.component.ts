@@ -60,13 +60,11 @@ export class RegisterOfferComponent implements OnInit {
       offerName: this.register.value.offerFullName,
       price: this.register.value.price,
       amount: this.register.value.amount,
+      bound: this.register.value.bound,
       clientEmail: this.selectedClient[0].email,
       agentEmail: this.selectedClient[0].agentEmail,
       status: "",
     } as Offer;
-
-    if(this.register.value.bound==="Sim") offer.bound = true;
-    else offer.bound = false;
 
     this.create(offer);
   }
@@ -86,6 +84,7 @@ export class RegisterOfferComponent implements OnInit {
   }
 
   create(offer: Offer): void {
+
     this.offerService.save(offer).subscribe(() => {
       const config = {
         data: {

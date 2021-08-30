@@ -33,6 +33,7 @@ export class ListOfferComponent implements OnInit {
   async fetchOffers(): Promise<void>{
     this.offers = await this.offerService.getOffers();
     this.dataSource = new MatTableDataSource(this.offers);
+    console.log(this.offers);
   }
 
   goToRegister(): void{
