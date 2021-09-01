@@ -1,3 +1,7 @@
 <mat-toolbar class="bar shadowbox">
-  <img  (click)="goToMain()" src="./assets/img/smash.png" style="width:60px; height: 60px;">
+  <app-menu></app-menu>
+  <img  (click)="goToList()" src="./assets/img/smash.png" style="width:60px; height: 60px;">
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <mat-icon style="display: none;" >share</mat-icon>
+  </button>
 </mat-toolbar>

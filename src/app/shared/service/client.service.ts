@@ -17,5 +17,9 @@ export class ClientService {
 
   }
 
+  async getAllClient(): Promise<Client[]>{
+    return this.http.get<Client[]>(`${this.baseUrl}/client`).toPromise();
+  }
+
 
 }

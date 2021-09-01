@@ -1,6 +1,11 @@
+<app-header></app-header>
 <div class="main-div margin-top-50">
   <mat-card class="center width">
     <button mat-button (click)="goToRegister()" class="greyColor">Criar pedido</button>
+    <mat-form-field appearance="standard" class="full-width">
+      <mat-label>Buscar</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Samus Aran" #input>
+    </mat-form-field>
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" class="full-width">
 
       <!-- clientCode Column -->
@@ -57,6 +62,11 @@
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">Não foi possivel encontrar "{{input.value}}" na busca </td>
+      </tr>
+
     </table>
     <mat-paginator [pageSizeOptions]="[5]"
                 [length]="this.offers.length"

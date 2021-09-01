@@ -17,6 +17,10 @@ import {registerLocaleData} from '@angular/common';
 import { FirstNamePipe } from './shared/pipes/first-name.pipe';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { getPtPaginatorIntl } from './shared/translate/pt-paginator-intl';
+import { MenuComponent } from './header/menu/menu.component';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { IntroComponent } from './intro/intro.component';
 registerLocaleData(localePt)
 
 
@@ -28,7 +32,9 @@ registerLocaleData(localePt)
     RegisterOfferComponent,
     AlertComponent,
     ToMarketPipe,
-    FirstNamePipe
+    FirstNamePipe,
+    MenuComponent,
+    IntroComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +44,8 @@ registerLocaleData(localePt)
     MaterialModule,
     HttpClientModule,
     ReactiveFormsModule,
-
+    MatTableModule,
+    MatSortModule
   ],
   providers: [
     {

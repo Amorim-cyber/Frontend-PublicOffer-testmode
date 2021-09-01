@@ -3,6 +3,25 @@
   color:white;
 }
 
+.font{
+  display: flex;
+  align-items: center;
+  font-size: 32px;
+  font-weight: 400;
+  margin-bottom: 10px;
+  color: var(--text-color);
+}
+
+::ng-deep .info-snackbar {
+  white-space: pre-wrap;
+}
+
+.align{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 @media screen and (max-width:641px){
   mat-card-actions {
     display: flex;

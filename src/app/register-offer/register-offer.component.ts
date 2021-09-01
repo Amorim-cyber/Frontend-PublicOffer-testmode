@@ -11,6 +11,7 @@ import { Offer } from '../shared/model/offer-model';
 import { ClientService } from '../shared/service/client.service';
 import { OfferService } from '../shared/service/offer.service';
 import { Asset } from '../shared/model/asset-model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-register-offer',
@@ -21,12 +22,14 @@ export class RegisterOfferComponent implements OnInit {
 
   register!: FormGroup;
   selectedClient: Client[] = [];
+  listOfClient: Client[] = [];
   assets: String[] = [];
   asset: Asset[] = [];
+  txt:String = "";
 
   constructor(public validate: ValidateFieldsService,public dialog: MatDialog,
     private fb: FormBuilder,private offerService:OfferService,private clientService:ClientService,
-    private router: Router,private assetService:AssetService) { }
+    private router: Router,private assetService:AssetService, private snackBar: MatSnackBar) { }
 
   get f() {
     return this.register.controls;
@@ -43,6 +46,7 @@ export class RegisterOfferComponent implements OnInit {
       amount:['',[Validators.required,Validators.min(0)]],
     });
     this.getAssetList();
+    this.getAllClient();
   }
 
   save(): void {
@@ -65,7 +69,7 @@ export class RegisterOfferComponent implements OnInit {
       agentEmail: this.selectedClient[0].agentEmail,
       status: "",
     } as Offer;
-
+    console.log(offer);
     this.create(offer);
   }
 
@@ -83,6 +87,26 @@ export class RegisterOfferComponent implements OnInit {
 
   }
 
+  async getAllClient():Promise<void>{
+
+    this.listOfClient = await this.clientService.getAllClient();
+
+}
+
+  openSnackBar() {
+    this.listOfClient.sort((a,b) => (a.code > b.code) ? 1 : ((b.code > a.code) ? -1 : 0))
+    .forEach((client) => {
+      this.txt += client.code + "\t\t" + client.name + "\n";
+    });
+    this.snackBar.open('INFORMAÇÕES\n\n'+
+      'Código\tCliente\n'+this.txt, 'Entendido', {
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      panelClass: ['info-snackbar']
+    });
+    this.txt = "";
+  }
+
   create(offer: Offer): void {
 
     this.offerService.save(offer).subscribe(() => {
@@ -93,7 +117,7 @@ export class RegisterOfferComponent implements OnInit {
       };
       const dialogRef = this.dialog.open(AlertComponent, config);
       dialogRef.afterClosed().subscribe(() => {
-        this.router.navigateByUrl("main");
+        this.router.navigateByUrl("main/list");
       });
     },
     () => {

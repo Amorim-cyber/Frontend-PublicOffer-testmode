@@ -2,7 +2,7 @@ export class Offer{
   id!: number;
   clientCode!: number;
   clientName!: string;
-  bound!: boolean;
+  bound!: string;
   offerName!: string;
   price!: number;
   minimum!: number;

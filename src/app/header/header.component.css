@@ -8,13 +8,7 @@
   background-color: var(--primary-color);
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
-  padding: 1.875rem 1.875rem;
 }
 
-@media screen and (max-width: 48rem) {
-  .bar{
-    justify-content: center;
-  }
-}

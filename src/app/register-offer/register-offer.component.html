@@ -1,5 +1,12 @@
+<app-header></app-header>
 <div class="main-div margin-top-50">
   <mat-card class="center width">
+    <div class="example-button-container align">
+      <span class="font">Registrar Pedido</span>
+      <button (click) = "openSnackBar()" mat-mini-fab aria-label="Help Icon" style="color:black; background-color: #fff700;">
+        <mat-icon>help_outline</mat-icon>
+      </button>
+    </div>
     <form autocomplete="off" novalidate [formGroup]="register" (ngSubmit)="save()">
       <mat-card-content>
         <mat-form-field class="full-width">

@@ -31,7 +31,7 @@ export class AlertComponent implements OnInit {
   } as Alert;
 
   constructor(public dialog: MatDialog,public dialogRef: MatDialogRef<AlertComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Alert,private router: Router, private offerService: OfferService) { }
+    @Inject(MAT_DIALOG_DATA) public data: Alert, private offerService: OfferService) { }
 
   ngOnInit(): void {
 
