@@ -73,7 +73,7 @@ export class ListOfferComponent implements AfterViewInit {
     };
     const dialogRef = this.dialog.open(AlertComponent, config);
     dialogRef.afterClosed().subscribe(() => {
-      this.router.navigateByUrl('main');
+      this.router.navigateByUrl('main/list');
     });
   }
 
