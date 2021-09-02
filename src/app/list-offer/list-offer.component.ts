@@ -1,4 +1,3 @@
-import { Alert } from './../shared/model/alert-model';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -8,6 +7,8 @@ import { OfferService } from '../shared/service/offer.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AlertComponent } from '../shared/components/alert/alert.component';
 import { MatSort } from '@angular/material/sort';
+import { Stage } from '../shared/model/stage-model';
+import { Alert } from './../shared/model/alert-model';
 
 @Component({
   selector: 'app-list-offer',
@@ -17,6 +18,8 @@ import { MatSort } from '@angular/material/sort';
 export class ListOfferComponent implements AfterViewInit {
 
   offers!: Offer[];
+  stage: Stage = new Stage();
+  address!: string;
 
   displayedColumns: string[] = ['clientCode', 'clientName', 'bound', 'offerName', 'price', 'amount', 'status', 'edit'];
   dataSource! : MatTableDataSource<Offer>;
@@ -24,6 +27,7 @@ export class ListOfferComponent implements AfterViewInit {
   constructor(public dialog: MatDialog,
   private offerService: OfferService, private router: Router) {
     this.fetchOffers();
+    this.address = this.getStageAddress();
    }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -50,6 +54,11 @@ export class ListOfferComponent implements AfterViewInit {
 
   goToRegister(): void{
     this.router.navigateByUrl("main/register");
+  }
+
+  getStageAddress(): string{
+    const id = Math.floor(Math.random() * (0 - (this.stage.address.length-1)) + 0)*(-1);
+    return this.stage.getStageById(id);
   }
 
   update(offer: Offer): void {

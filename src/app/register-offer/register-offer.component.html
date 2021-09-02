@@ -1,110 +1,114 @@
-<app-header></app-header>
-<div class="main-div margin-top-50">
-  <mat-card class="center width">
-    <div class="example-button-container align">
-      <span class="font">Registrar Pedido</span>
-      <button (click) = "openSnackBar()" mat-mini-fab aria-label="Help Icon" style="color:black; background-color: #fff700;">
-        <mat-icon>help_outline</mat-icon>
-      </button>
-    </div>
-    <form autocomplete="off" novalidate [formGroup]="register" (ngSubmit)="save()">
-      <mat-card-content>
-        <mat-form-field class="full-width">
-          <mat-label>Código do cliente *</mat-label>
-          <input type="text" autofocus="autofocus" style="display:none" />
-          <input type="number" matInput placeholder="Digite o código do cliente"
-          (change)="getClientById(register.value.clientCode)"name="clientCode" formControlName="clientCode">
-          <mat-error *ngIf="validate.hasInvalidError(f.clientCode,'required')">
-            Campo obrigatório
-          </mat-error>
-        </mat-form-field>
-
-        <mat-card *ngIf="this.selectedClient[0]===undefined && f.clientCode.touched"
-        style="color:#FF0800; margin-top:15px">
-          <strong>Cliente não encontrado!</strong>
-        </mat-card>
-
-        <mat-card *ngIf="this.selectedClient[0]!=undefined" class="full-width" >
-          <strong>Cliente: </strong>{{this.selectedClient[0].name}}
-        </mat-card>
-
-        <mat-form-field *ngIf="this.selectedClient[0]!=undefined" class="full-width" style="margin-top:15px">
-          <mat-select  placeholder="Selecione o ticker da oferta *"
-          formControlName="offerName" (focusout)="getAssetByShortName(register.value.offerName)">
-            <mat-option *ngFor="let asset of assets" [value]="asset">{{asset}}</mat-option>
-          </mat-select>
-          <mat-error *ngIf="validate.hasInvalidError(f.offerName,'required')" >
-            Campo obrigatório
-          </mat-error>
-        </mat-form-field>
-
-        <mat-error *ngIf="validate.hasInvalidError(f.offerFullName,'required') && !validate.hasInvalidError(f.offerName,'required')"
-        style="margin-bottom:5px; font-size: 11px;">
-          O tipo de oferta não foi selecionada
-        </mat-error>
-        <mat-radio-group formControlName="offerFullName" *ngIf="this.selectedClient[0]!=undefined"
-          aria-label="Selecione o tipo de oferta *" class="column" >
-          <mat-radio-button style="margin-bottom: 15px;"*ngFor="let a of asset" [value]="a.longName">
-            {{a.longName}}
-          </mat-radio-button>
-        </mat-radio-group>
-
-        <mat-card *ngIf="this.selectedClient[0]!=undefined" class="full-width" style="margin-bottom: 15px;">
-          <span>
-            <strong *ngIf="validate.hasInvalidError(f.bound,'required')" style="color:#FF0800;"> O cliente é vinculado? *</strong>
-            <strong *ngIf="!validate.hasInvalidError(f.bound,'required')"> O cliente é vinculado? *</strong>
-          </span><br><br>
-          <mat-radio-group aria-label="O cliente é vinculado? *" formControlName="bound">
-          <mat-radio-button value="Sim" style="margin-right: 20px;">Sim</mat-radio-button>
-          <mat-radio-button value="Não">Não</mat-radio-button>
-          </mat-radio-group>
-          <mat-error *ngIf="validate.hasInvalidError(f.bound,'required')"style="margin-top:10px; font-size: 11px;">
-            Campo obrigatório
-          </mat-error>
-        </mat-card>
-
-        <mat-card *ngIf="this.selectedClient[0]!=undefined" class="full-width" style="margin-bottom: 15px;" >
-          <span>
-            <strong *ngIf="validate.hasInvalidError(f.bound,'required')" style="color:#FF0800;"> O preço será a mercado? *</strong>
-            <strong *ngIf="!validate.hasInvalidError(f.bound,'required')"> O preço será a mercado? *</strong>
-          </span><br><br>
-          <mat-radio-group aria-label="market" formControlName="market">
-          <mat-radio-button value="Sim" style="margin-right: 20px;">Sim</mat-radio-button>
-          <mat-radio-button value="Não">Não</mat-radio-button>
-          </mat-radio-group>
-
-          <mat-form-field class="full-width" *ngIf="register.value.market==='Não'" style="margin-top: 15px;">
-            <mat-label>Preço (R$) *</mat-label>
-            <input matInput placeholder="Digite o preço do ativo" type="number"
-            min="0" name="price" formControlName="price">
-            <mat-error *ngIf="validate.hasInvalidError(f.price,'required')">
+<div class="main" [style.background]="'url('+address+')'">
+  <app-header></app-header>
+  <div class="main-div margin-top-50">
+    <mat-card class="center width">
+      <div class="example-button-container align">
+        <span class="font">Registrar Pedido</span>
+        <button (click) = "openSnackBar()" mat-mini-fab aria-label="Help Icon" style="color:black; background-color: #fff700;">
+          <mat-icon>help_outline</mat-icon>
+        </button>
+      </div>
+      <form autocomplete="off" novalidate [formGroup]="register" (ngSubmit)="save()">
+        <mat-card-content>
+          <mat-form-field class="full-width">
+            <mat-label>Código do cliente *</mat-label>
+            <input type="text" autofocus="autofocus" style="display:none" />
+            <input type="number" matInput placeholder="Digite o código do cliente"
+            (change)="getClientById(register.value.clientCode)"name="clientCode" formControlName="clientCode">
+            <mat-error *ngIf="validate.hasInvalidError(f.clientCode,'required')">
               Campo obrigatório
-            </mat-error>
-            <mat-error *ngIf="validate.hasInvalidError(f.price,'min')">
-              O preço precisa ter no mínimo R$ 0,00
             </mat-error>
           </mat-form-field>
 
-          <mat-error *ngIf="validate.hasInvalidError(f.bound,'required')"style="margin-top:10px; font-size: 11px;">
-            Campo obrigatório
-          </mat-error>
-        </mat-card>
+          <mat-card *ngIf="this.selectedClient[0]===undefined && f.clientCode.touched"
+          style="color:#FF0800; margin-top:15px">
+            <strong>Cliente não encontrado!</strong>
+          </mat-card>
 
-        <mat-form-field *ngIf="this.selectedClient[0]!=undefined" class="full-width" >
-          <mat-label>Financeiro (R$) *</mat-label>
-          <input matInput placeholder="Digite o montante que deseja reservar" type="number"
-          min="0" name="price" formControlName="amount">
-          <mat-error *ngIf="validate.hasInvalidError(f.amount,'required')">
-            Campo obrigatório
+          <mat-card *ngIf="this.selectedClient[0]!=undefined" class="full-width" >
+            <strong>Cliente: </strong>{{this.selectedClient[0].name}}
+          </mat-card>
+
+          <mat-form-field *ngIf="this.selectedClient[0]!=undefined" class="full-width" style="margin-top:15px">
+            <mat-select  placeholder="Selecione o ticker da oferta *"
+            formControlName="offerName" (focusout)="getAssetByShortName(register.value.offerName)">
+              <mat-option *ngFor="let asset of assets" [value]="asset">{{asset}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="validate.hasInvalidError(f.offerName,'required')" >
+              Campo obrigatório
+            </mat-error>
+          </mat-form-field>
+
+          <mat-error *ngIf="validate.hasInvalidError(f.offerFullName,'required') && !validate.hasInvalidError(f.offerName,'required')"
+          style="margin-bottom:5px; font-size: 11px;">
+            O tipo de oferta não foi selecionada
           </mat-error>
-          <mat-error *ngIf="validate.hasInvalidError(f.amount,'min')">
-            A oferta precisa ter no mínimo R$ 0,00
-          </mat-error>
-        </mat-form-field>
-      </mat-card-content>
-      <mat-card-actions *ngIf="this.selectedClient[0]!=undefined">
-        <button type="submit" class="color-btn" mat-raised-button>ok</button>
-      </mat-card-actions>
-    </form>
-  </mat-card>
+          <mat-radio-group formControlName="offerFullName" *ngIf="this.selectedClient[0]!=undefined"
+            aria-label="Selecione o tipo de oferta *" class="column" >
+            <mat-radio-button style="margin-bottom: 15px;"*ngFor="let a of asset" [value]="a.longName">
+              {{a.longName}}
+            </mat-radio-button>
+          </mat-radio-group>
+
+          <mat-card *ngIf="this.selectedClient[0]!=undefined" class="full-width" style="margin-bottom: 15px;">
+            <span>
+              <strong *ngIf="validate.hasInvalidError(f.bound,'required')" style="color:#FF0800;"> O cliente é vinculado? *</strong>
+              <strong *ngIf="!validate.hasInvalidError(f.bound,'required')"> O cliente é vinculado? *</strong>
+            </span><br><br>
+            <mat-radio-group aria-label="O cliente é vinculado? *" formControlName="bound">
+            <mat-radio-button value="Sim" style="margin-right: 20px;">Sim</mat-radio-button>
+            <mat-radio-button value="Não">Não</mat-radio-button>
+            </mat-radio-group>
+            <mat-error *ngIf="validate.hasInvalidError(f.bound,'required')"style="margin-top:10px; font-size: 11px;">
+              Campo obrigatório
+            </mat-error>
+          </mat-card>
+
+          <mat-card *ngIf="this.selectedClient[0]!=undefined" class="full-width" style="margin-bottom: 15px;" >
+            <span>
+              <strong *ngIf="validate.hasInvalidError(f.bound,'required')" style="color:#FF0800;"> O preço será a mercado? *</strong>
+              <strong *ngIf="!validate.hasInvalidError(f.bound,'required')"> O preço será a mercado? *</strong>
+            </span><br><br>
+            <mat-radio-group aria-label="market" formControlName="market">
+            <mat-radio-button value="Sim" style="margin-right: 20px;">Sim</mat-radio-button>
+            <mat-radio-button value="Não">Não</mat-radio-button>
+            </mat-radio-group>
+
+            <mat-form-field class="full-width" *ngIf="register.value.market==='Não'" style="margin-top: 15px;">
+              <mat-label>Preço (R$) *</mat-label>
+              <input matInput placeholder="Digite o preço do ativo" type="number"
+              min="0" name="price" formControlName="price">
+              <mat-error *ngIf="validate.hasInvalidError(f.price,'required')">
+                Campo obrigatório
+              </mat-error>
+              <mat-error *ngIf="validate.hasInvalidError(f.price,'min')">
+                O preço precisa ter no mínimo R$ 0,00
+              </mat-error>
+            </mat-form-field>
+
+            <mat-error *ngIf="validate.hasInvalidError(f.bound,'required')"style="margin-top:10px; font-size: 11px;">
+              Campo obrigatório
+            </mat-error>
+          </mat-card>
+
+          <mat-form-field *ngIf="this.selectedClient[0]!=undefined" class="full-width" >
+            <mat-label>Financeiro (R$) *</mat-label>
+            <input matInput placeholder="Digite o montante que deseja reservar" type="number"
+            min="0" name="price" formControlName="amount">
+            <mat-error *ngIf="validate.hasInvalidError(f.amount,'required')">
+              Campo obrigatório
+            </mat-error>
+            <mat-error *ngIf="validate.hasInvalidError(f.amount,'min')">
+              A oferta precisa ter no mínimo R$ 0,00
+            </mat-error>
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions *ngIf="this.selectedClient[0]!=undefined">
+          <button type="submit" class="color-btn" mat-raised-button>ok</button>
+        </mat-card-actions>
+      </form>
+    </mat-card>
+  </div>
 </div>
+
+

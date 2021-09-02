@@ -12,6 +12,7 @@ import { ClientService } from '../shared/service/client.service';
 import { OfferService } from '../shared/service/offer.service';
 import { Asset } from '../shared/model/asset-model';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Stage } from '../shared/model/stage-model';
 
 @Component({
   selector: 'app-register-offer',
@@ -26,10 +27,14 @@ export class RegisterOfferComponent implements OnInit {
   assets: String[] = [];
   asset: Asset[] = [];
   txt:String = "";
+  stage: Stage = new Stage();
+  address!: string;
 
   constructor(public validate: ValidateFieldsService,public dialog: MatDialog,
     private fb: FormBuilder,private offerService:OfferService,private clientService:ClientService,
-    private router: Router,private assetService:AssetService, private snackBar: MatSnackBar) { }
+    private router: Router,private assetService:AssetService, private snackBar: MatSnackBar) {
+      this.address = this.getStageAddress();
+    }
 
   get f() {
     return this.register.controls;
@@ -71,6 +76,11 @@ export class RegisterOfferComponent implements OnInit {
     } as Offer;
     console.log(offer);
     this.create(offer);
+  }
+
+  getStageAddress(): string{
+    const id = Math.floor(Math.random() * (0 - (this.stage.address.length-1)) + 0)*(-1);
+    return this.stage.getStageById(id);
   }
 
   async getAssetList(): Promise<void> {

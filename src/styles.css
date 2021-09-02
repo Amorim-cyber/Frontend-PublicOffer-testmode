@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 :root{
-  --background-color: url(assets/img/Hyrule_Castle2.jpg);
+  --background-color: url(assets/img/back-intro.jpg);
   --primary-color: #F2071B;
   --text-color: #5C6369;
 }
