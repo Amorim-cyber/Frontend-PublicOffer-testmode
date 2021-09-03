@@ -8,58 +8,87 @@ Fala pessoal, esta é a parte frontend da elaboração de um sistema que irá ge
 
 Vocês podem ver a parte backend por meio deste link: https://github.com/Amorim-cyber/Backend-PublicOffer-testmode
 
-A oferta pública é basicamente uma proposta de negócio, e existem vários tipos. Contudo não vou me estender a tecnicalidades, aqui neste projeto irei falar apenas da mais conhecida: o IPO.
+A oferta pública é basicamente uma proposta de negócio, e existem vários tipos. Contudo não vou me estender a tecnicalidades, aqui neste projeto irei falar apenas das mais conhecidas: o IPO e o FOLLOW ON
 
 Sendo bem breve IPO (*Initial Public Offering*)  é um tipo de oferta pública na qual as ações de uma empresa geralmente são vendidas a investidores institucionais, os quais, por sua vez, vendem essas ações ao público em geral, em bolsa de valores pela primeira vez.
 
-Portanto, a motivação desse projeto é criar um controle de reservas para IPOs.
+O follow on é uma oferta subsequentes de uma empresa que já abriu seu capital.
+
+Portanto, a motivação desse projeto é criar um controle para essas reservas.
+
+### TECHS UTILIZADAS
+
+<hr>
+
+* Angular
+* Angular Material
+* IDE Visual Studio Code (ou outra opção se preferir)
 
 ### Modelo de negócios
 
 <hr>
+Aqui no nosso projeto vamos entrar na pele da instituição financeira **Smash Banking** que reservou ações de várias empresa fictícias podendo participar de suas ofertas públicas.
 
+Os colaboradores Master Hand e Crazy Hand estão responsáveis pela assessoria financeira. Eles são os intermediários entre cliente e instituição.  
 
-Aqui no nosso projeto vamos entrar na pele de uma instituição financeira que comprou as ações de uma empresa fictícia chamada *Grupo XPTO Logística*. Ela irá fazer a sua oferta pública para o mercado.
+Vamos supor que o cliente Luigi quer participar do IPO de Yoshi Resort e solicita à Crazy Hand, seu assessor, reserva. 
 
-Vamos supor que nossa instituição domine esse mercado.
+Crazy Hand pega mais informações sobre o pedido e registra os seguintes dados ao sistema:
 
-Beleza, vamos simplificar ainda mais: Vamos supor também que nossa instituição tenha apenas três funcionários, o agente A do código 11111, o agente B do código 22222 e o executor de ordens C. 
+<img src="assets/register.PNG" style="border: solid grey; border-radius:4px"></img>
 
-A e B são responsáveis por assessorar financeiramente todos clientes enquanto o C fica responsável pelo operacional.
+Analise dos pontos em vermelho:
 
-Caso algum cliente tenha interesse de participar desse IPO de Grupo XPTO, ele deve notificar A ou B, estes por sua vez irão mandar um pedido para C fazer a reserva. 
+1. Primeiro o assessor digitou o código de cliente do Luigi para encontra-lo no sistema.
+2. Cliente deseja participar do follow on de Yoshi Resort, uma empresa já negociada, e optar por ser do tipo varejo sem lockup. Varejo pois será um pedido abaixo de R$ 1.000.000,00 e sem lockup dá o direito ao Luigi vender a ação a qualquer momento após ser adquirida.
+3. Luigi não trabalha na Yoshi Resort, logo ele não tem vinculo com a empresa.
+4. Luigi opta em escolher o preço a R$ 15,00 por ação invés de adquiri-la ao preço que será estipulado no bookbuilding.
+5. Por fim ele deseja colocar o valor de R$ 20.000,00 na oferta.
 
-Ao efetuar a reserva, C notifica A ou B, que por sua vez avisa o cliente.
+Clicado ok, o pedido é registado no sistema e ele passa para uma lista de monitoramento junto com outros clientes do Smash Banking, por lá uma equipe interna irá atuar em cada pedido.
 
-Este será o modelo que vamos tentar aplicar no projeto.
+<img src="assets/list.PNG" style="border: solid grey; border-radius:4px"></img>
 
-### TRILHA
+Na parte de edição a equipe pode visualizar mais dados sobre o pedido, atualizar o seu status e até deletar o pedido.
+
+O pedido pode estar em dois tipos de status:
+
+* **Enviado:** Pedido foi para a central ser processado.
+* **Feito:** Central informa a equipe que o pedido foi realizado com sucesso.
+
+<img src="assets/data.PNG" style="border: solid grey; border-radius:4px"></img>
+
+### Como instalar o programa
 
 <hr>
 
-Vou deixar aqui notas com mais detalhes de cada commit do projeto.
+Para rodar o projeto localmente em sua maquina siga os seguintes passos:
 
-<div style="background-color: #E8E8E8; border-radius: 3px;">
-   <p><strong>INITIAL COMMIT</strong></p>
-    <ul>
-        <li><strong>PARTE 1:</strong> Commit inicial que o angular cria por default</li>
-    </ul>
-    <br>
-</div>
+1. Baixe os arquivos deste repositório
 
-<div style="background-color: #E8E8E8; border-radius: 3px;">
-   <p><strong>ESTRUTURANDO OS COMPONENTES INICIAIS</strong></p>
-    <ul>
-        <li><strong>PARTE 2:</strong> Criando os componentes front-view que será a visão dos agentes de seus requests, back-view que será a visão do executor dos requests e um componente para navegação. Também foi criado as rotas das páginas e alguns elementos HTML</li>
-    </ul>
-    <br>
-</div>
-<div style="background-color: #E8E8E8; border-radius: 3px;">
-   <p><strong>INCLUINDO O MÉTODO HTTP GET NAS PÁGINAS</strong></p>
-    <ul>
-        <li><strong>PARTE 3:</strong> Criado o model Request e o arquivo de service da aplicação. Incluido método getAll que retorna todas as requests e o metodo getAllByAgentId que retorna todas as requests criadas por um determinado agente</li>
-    </ul>
-    <br>
-</div>
+2. Execute o comando `ng serve` em seu terminal dentro do diretório deste projeto
 
+   <img src="assets/passo2.PNG" style="border: solid grey; border-radius:4px"></img>
+
+3. Digite `http://localhost:4200`  no seu navegador.
+
+   <img src="assets/passo3.PNG" style="border: solid grey; border-radius:4px"></img>
+
+**PRONTO**
+
+A aplicação está pronta para uso.
+
+<img src="assets/smash.PNG" style="border: solid grey; border-radius:4px"></img>
+
+
+
+### Considerações finais
+
+<hr>
+
+Pode ser que o programa trave por ainda estar tentando conectar ao banco. Caso isso ocorra espere alguns instantes ou dê refresh na página.
+
+
+
+### FORTE ABRAÇO!! :smile:
 
